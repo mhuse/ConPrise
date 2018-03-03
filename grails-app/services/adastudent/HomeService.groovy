@@ -24,7 +24,7 @@ def mailService
 
             mailService.sendMail {
                 to user?.username
-                from "Texnologiya.az <info@texnologiya.az>"
+                from "ADA <info@texnologiya.az>"
                 subject "Hesab Aktivləşdirilməsi"
                 html "<a href='13.90.84.149/ada/home/activateAccount?token=${user?.activated}' style=\"\t-moz-box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
                         "-webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
