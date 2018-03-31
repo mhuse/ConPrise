@@ -7,12 +7,12 @@
     %{--<th>Reject</th>--}%
     </thead>
     <tbody>
-    <g:each in="${quotations}" var="quotation">
+    <g:each in="${salesOrders}" var="salesOrder">
         <tr>
-            <td>${quotation.name}</td>
-            <td>${quotation.description}</td>
+            <td>${salesOrder.name}</td>
+            <td>${salesOrder.description}</td>
             <td>
-                <g:link action="watchPurshaceOrder" id="${quotation?.id}"><span
+                <g:link action="watchSalesOrder" id="${salesOrder?.id}"><span
                         class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></g:link>
             </td>
             %{--<td>--}%

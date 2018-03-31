@@ -1,5 +1,7 @@
 package adastudent
 
+import ada.CompanyInterest
+import ada.Interest
 import ada.Role
 import ada.User
 import ada.UserRole
@@ -16,17 +18,23 @@ def mailService
             user.enabled=false
             user.accountExpired=false
             user.accountLocked=false
+            user.voenSubmitted=false
             user.passwordExpired=false
+            user.firstLogin=false
             user.activated=UUID.randomUUID().toString()
             user.save(flush: true,failOnError: true)
-
             new UserRole(user: user,role: Role.findByAuthority('ROLE_COMPANY'))?.save(flush: true,failOnError: true)
 
+            def interests=params?.list('interest')
+            for(interest in interests){
+                def intrst=Interest?.get(Long.parseLong(interest))
+                new CompanyInterest(user: user,interest:intrst)?.save(flush: true,failOnError: true)
+            }
             mailService.sendMail {
                 to user?.username
                 from "ADA <info@texnologiya.az>"
                 subject "Hesab Aktivləşdirilməsi"
-                html "<a href='13.90.84.149/ada/home/activateAccount?token=${user?.activated}' style=\"\t-moz-box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
+                html "<a href='http://13.90.84.149/ada/home/activateAccount?token=${user?.activated}' style=\"\t-moz-box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
                         "-webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
                         "box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
                         "background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));\n" +

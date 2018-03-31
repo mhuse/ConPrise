@@ -12,23 +12,28 @@ class User {
 	String description
 	String address
 	Date dateCreated
+	String image
 	boolean enabled
+	boolean firstLogin
+	boolean voenSubmitted
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
-	static hasMany = [products:Product]
+	static hasMany = [products:Product,companyInterest:CompanyInterest,comments:Comment]
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
 		creationDate nullable: true,blank: true
 		description nullable: true,blank: true
 		address nullable: true,blank: true
+		voenSubmitted nullable: true,blank: true
+		image nullable: true,blank: true
 	}
 
-	def friends(user){
-		return Friend.findByUser1AndStatus(user,1).user2+Friend.findByUser2AndStatus(user,1).user1
-
-	}
+//	def friends(user){
+//		return Friend.findAllByUser1AndStatus(user,1).user2+Friend.findAllByUser2AndStatus(user,1).user1
+//
+//	}
 	static mapping = {
 		password column: '`password`'
 		description type: 'text'

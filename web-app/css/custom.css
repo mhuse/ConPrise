@@ -1,0 +1,34 @@
+.productimage{
+    width:50px;
+}
+.companyicon{
+    width:200px;
+}
+
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+   border:1px solid #51bb1b;
+    background: #f2f98d40;
+    vertical-align: middle;
+}
+
+.leftcomment{
+    float: left;
+}
+.leftcomment h3{
+    color: green;
+}
+.rightcomment{
+    float: right;
+}
+.rightcomment h3{
+    color: #0000C0;
+}
+.comment{
+    float: left;
+    background: #fff;
+    margin: 10px;
+    padding: 10px;
+}
+.commentdate{
+    padding-right:20px
+}
