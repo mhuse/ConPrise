@@ -18,7 +18,7 @@
             <td>${product?.numberOfProduct?.toString()?.replace(".0", "")}</td>
             <td>${product?.price?.toString()?.replace(".0", "")}</td>
             <td>${(product?.numberOfProduct*product?.price)?.toString()?.replace(".0", "")}</td>
-            <td>${(product?.numberOfProduct*product?.price -product?.numberOfProduct*product?.price*product?.discount/100)?.toString()?.replace(".0", "")}</td>
+            <td>${(product?.numberOfProduct*product?.price*product?.discount/100)?.toString()?.replace(".0", "")}</td>
             <td>${product?.discount?.toString()?.replace(".0", "")}</td>
         </tr>
     </g:each>
@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td>Purchase:</td>
-            <td><g:if test="${products?.price?.sum()}">${pricesum-discount}</g:if><g:else>0</g:else></td>
+            <td><g:if test="${products?.price?.sum()}">${products?.price?.sum()-discount}</g:if><g:else>0</g:else></td>
         </tr>
     </table>
 </div>

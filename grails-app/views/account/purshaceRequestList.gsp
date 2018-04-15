@@ -1,8 +1,5 @@
 <meta name="layout" content="main"/>
 <h3 class="pageTitle">Purchase requests</h3>
-<br/>
-<p style="color: red">${params?.message}</p>
-<br/>
 <table class="table table-bordered">
     <thead>
     <th>Title</th>

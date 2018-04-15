@@ -26,7 +26,7 @@ environments {
     production {
         dataSource {
             username = "root"
-            password = "123456"
+            password = "security19951995mysql@dmin"
             dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/ada?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
             pooled = true

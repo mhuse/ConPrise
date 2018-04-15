@@ -160,7 +160,6 @@ class AccountController {
 
     def savePurhsaseQuatation() {
         accountService.savePurhsaseQuatation(params, springSecurityService.currentUser)
-        params?.message='Purshace request created !'
         redirect(action: 'purshaceRequestList')
     }
 
@@ -402,7 +401,7 @@ class AccountController {
         def comments = Comment?.findAllBySalesForm(salesForm)
         double pricesum
         for(p in products){
-            pricesum+=p.price*p.numberOfProduct
+            pricesum+=p.price+p.numberOfProduct
         }
         [pricesum:pricesum,products: products, user: springSecurityService.currentUser, salesForm: salesForm, discount: discount, comments: comments, currentUser: springSecurityService.currentUser]
     }
