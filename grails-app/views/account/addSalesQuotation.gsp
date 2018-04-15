@@ -1,5 +1,5 @@
 <meta name="layout" content="main"/>
-
+<h3 class="pageTitle">Create sales quotation</h3>
 <div class="col-md-6 col-md-offset-3">
     <g:form action="saveSalesQuatation" id="${params?.id}">
         <div class="form-group">

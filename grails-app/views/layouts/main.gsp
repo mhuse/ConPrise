@@ -27,12 +27,19 @@
 <g:include controller="account" action="headerNav"/>
 <main class="cd-main-content">
     <style>
-        body{
-            background: #f2f2f2!important;
-        }
+    body{
+        background-repeat: no-repeat;
+        background-size: cover!important;
+        background-position: center;
+        background-attachment: fixed!important;
+        background-image: url("${resource(dir: 'images',file: 'bg2.jpg')}") !important;
+    }
+        /*body{*/
+            /*background: #f2f2f2!important;*/
+        /*}*/
     </style>
     <g:include controller="account" action="leftNav"/>
-    <div class="content-wrapper"><br/><br/>
+    <div class="content-wrapper">
         <g:layoutBody/>
     </div>
 </main>

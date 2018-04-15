@@ -1,4 +1,8 @@
 <meta name="layout" content="main"/>
+<h3 class="pageTitle">Purchase requests</h3>
+<br/>
+<p style="color: red">${params?.message}</p>
+<br/>
 <table class="table table-bordered">
     <thead>
     <th>Title</th>
@@ -26,16 +30,16 @@
             </td>
             <td>
                 <g:if test="${quotation?.status == 1}">
-                    <g:link action="submitQuotation" id="${quotation?.id}" style="color: green"
+                    <g:link action="submitQuotation" id="${quotation?.id}" style="color: #0af50a"
                             ><span
                             class="glyphicon glyphicon-ok" aria-hidden="true"></span></g:link>
                 </g:if>
                 <g:if test="${quotation?.status == 2}">
-                    Submitted
+                    <p class="submitted">Submitted</p>
                 </g:if></td>
             <td>
                 <g:if test="${quotation?.status == 1}">
-                    <g:link action="addPurshaseQuotation" id="${quotation?.id}" style="color: green"><span
+                    <g:link action="addPurshaseRequest" id="${quotation?.id}" style="color: #0af50a"><span
                             class="glyphicon glyphicon-edit" aria-hidden="true"></span></g:link>
                 </g:if>
             </td>

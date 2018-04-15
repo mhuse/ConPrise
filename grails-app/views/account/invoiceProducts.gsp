@@ -1,10 +1,13 @@
 <meta name="layout" content="main"/>
+<h3 class="pageTitle">Products of invoice document</h3>
 <table class="table table-bordered">
     <thead>
     <th>Product name</th>
     <th>Description</th>
     <th>Count</th>
     <th>Price (USD)</th>
+    <th>Total (USD)</th>
+    <th>Total with discount (USD)</th>
     <th>Discount (%)</th>
     </thead>
     <tbody>
@@ -14,6 +17,8 @@
             <td>${product?.purhshaseFormProduct?.description}</td>
             <td>${product?.numberOfProduct?.toString()?.replace(".0", "")}</td>
             <td>${product?.price?.toString()?.replace(".0", "")}</td>
+            <td>${(product?.numberOfProduct*product?.price)?.toString()?.replace(".0", "")}</td>
+            <td>${(product?.numberOfProduct*product?.price -product?.numberOfProduct*product?.price*product?.discount/100)?.toString()?.replace(".0", "")}</td>
             <td>${product?.discount?.toString()?.replace(".0", "")}</td>
         </tr>
     </g:each>
@@ -23,7 +28,7 @@
     <table>
         <tr>
             <td>Sum</td>
-            <td>${products?.price?.sum()}</td>
+            <td>${pricesum}</td>
         </tr>
         <tr>
             <td>Discount:</td>
@@ -31,7 +36,7 @@
         </tr>
         <tr>
             <td>Purchase:</td>
-            <td>${products?.price?.sum()-discount}</td>
+            <td><g:if test="${products?.price?.sum()}">${pricesum-discount}</g:if><g:else>0</g:else></td>
         </tr>
     </table>
 </div>

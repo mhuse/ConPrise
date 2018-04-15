@@ -11,6 +11,7 @@ class User {
 	Date creationDate
 	String description
 	String address
+	String phone
 	Date dateCreated
 	String image
 	boolean enabled
@@ -28,6 +29,7 @@ class User {
 		address nullable: true,blank: true
 		voenSubmitted nullable: true,blank: true
 		image nullable: true,blank: true
+		phone nullable: true,blank: true
 	}
 
 //	def friends(user){

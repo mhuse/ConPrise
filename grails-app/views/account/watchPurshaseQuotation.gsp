@@ -1,5 +1,5 @@
 <meta name="layout" content="main"/>
-
+<h3 class="pageTitle">Purchase quotation</h3>
 <div style="margin: auto">
     <h3>${quot?.name}</h3>
     <h5>By: ${quot?.user?.name}</h5>

@@ -20,7 +20,7 @@ def mailService
             user.accountLocked=false
             user.voenSubmitted=false
             user.passwordExpired=false
-            user.firstLogin=false
+            user.firstLogin=true
             user.activated=UUID.randomUUID().toString()
             user.save(flush: true,failOnError: true)
             new UserRole(user: user,role: Role.findByAuthority('ROLE_COMPANY'))?.save(flush: true,failOnError: true)
@@ -32,9 +32,9 @@ def mailService
             }
             mailService.sendMail {
                 to user?.username
-                from "ADA <info@texnologiya.az>"
+                from "ADA <conprise@texnologiya.az>"
                 subject "Hesab Aktivləşdirilməsi"
-                html "<a href='http://13.90.84.149/ada/home/activateAccount?token=${user?.activated}' style=\"\t-moz-box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
+                html "<a href='http://13.90.84.149/conprise/home/activateAccount?token=${user?.activated}' style=\"\t-moz-box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
                         "-webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
                         "box-shadow: 0px 0px 0px 2px #9fb4f2;\n" +
                         "background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));\n" +

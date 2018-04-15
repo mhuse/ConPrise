@@ -18,6 +18,9 @@
             <ul class="nav navbar-nav">
                 <li><g:link controller="admin" action="index" >Companies</g:link></li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li><g:link controller="admin" action="info" >Info</g:link></li>
+            </ul>
 
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->

@@ -27,8 +27,6 @@ class AccountService {
         product?.category = Category?.get(params?.getLong('category'))
         product?.status = 1
         product?.user = user
-
-
         def files = request.getFiles("file")
         if (files) {
             for (file in files) {
@@ -53,9 +51,7 @@ class AccountService {
 
             }
         }
-
         product.save(flush: true, failOnError: true)
-
     }
 
     def submitPurshaceOrder(params, user) {
@@ -79,7 +75,7 @@ class AccountService {
     }
 
     def secondLogin(currentUser) {
-        currentUser.firstLogin = true
+        currentUser.firstLogin = false
         currentUser.save(flush: true, failOnError: true)
     }
 
@@ -179,23 +175,31 @@ class AccountService {
 
     def addFriend(params, currentUser) {
         def user2 = User.findByIdAndEnabled(params?.getLong('id'), true)
-        def friend = Friend?.findByUser1OrUser2(user2, user2)
-        if (!friend) {
-            friend = new Friend()
+        def friend1 = Friend?.findByUser1AndUser2(user2, currentUser)
+        def friend2=Friend?.findByUser1AndUser2(currentUser,user2)
+        if (!friend1 && !friend2) {
+            def friend = new Friend()
             friend.user1 = currentUser
             friend.user2 = user2
             friend.status = 0
             friend.save(flush: true, failOnError: true)
-        } else if (friend.status > 1) {
-            friend.status = 0
+        } else if (friend1?.status > 0) {
+             friend1.status = 0
+        } else if (friend2?.status > 0) {
+            friend2.status = 0
         }
     }
 
     def deleteFriend(params, currentUser) {
         def user2 = User.findByIdAndEnabled(params?.getLong('id'), true)
-        def friend = Friend?.findByUser1OrUser2(user2, user2)
-        friend.status = 2
-
+        def friend = Friend?.findByUser1AndUser2(user2, currentUser)
+        def friend2=Friend?.findByUser1AndUser2(currentUser, user2)
+        if(friend){
+            friend?.status=2
+        }
+        if(friend2){
+            friend2?.status=2
+        }
     }
 
     def acceptFriendRequest(params, currentuser) {
@@ -343,6 +347,7 @@ class AccountService {
     def saveCompanyInfo(params) {
         def company = springSecurityService.currentUser
         company?.description = params?.description
+        company?.phone = params?.phone
         company?.save(flush: true, failOnError: true)
     }
 
@@ -373,4 +378,9 @@ class AccountService {
 
     }
 
+    def openNotification(user,id){
+        def notification=Notification?.findByUserAndIdAndStatus(user,id,1)
+        notification?.status=0
+        notification?.save(flush: true,failOnError: true)
+    }
 }

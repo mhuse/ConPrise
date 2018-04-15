@@ -1,4 +1,6 @@
 <meta name="layout" content="main"/>
+
+<h3 class="pageTitle">Purchase invoice list</h3>
 <table class="table table-bordered">
     <thead>
     <th>Title</th>
@@ -17,7 +19,7 @@
             </td>
             <td>
                 <g:if test="${doc?.status == 6}">
-                    Invoice is ready to be submitted
+                    <p class="submitted"> Invoice is ready to be submitted</p>
                 </g:if>
                 <g:if test="${doc?.status == 7}">
                     Invoice is waiting response from ${doc?.user?.name}

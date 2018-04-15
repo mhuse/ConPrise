@@ -1,4 +1,8 @@
 <meta name="layout" content="main"/>
+
+<h3 class="pageTitle">Products
+    <a href="${createLink(action: 'addProduct')}"><button class="btn btn-primary pull-right" style="color:#fff">+ Add product</button> </a>
+</h3>
 <table class="table table-bordered">
     <thead>
     <th>Product name</th>
@@ -17,7 +21,7 @@
         </a>
         </td>
         <td>${product?.category?.name}</td>
-        <td><g:link action="addProduct" id="${product?.id}" style="color: green"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </g:link> </td>
+        <td><g:link action="addProduct" id="${product?.id}" style="color: #0af50a"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </g:link> </td>
         <td><g:link action="removeProduct" id="${product?.id}" style="color: red;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </g:link> </td>
     </tr>
     </g:each>

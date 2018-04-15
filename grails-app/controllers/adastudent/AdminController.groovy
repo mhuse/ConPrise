@@ -1,5 +1,6 @@
 package adastudent
 
+import ada.Info
 import ada.User
 import grails.plugins.springsecurity.Secured
 
@@ -13,6 +14,13 @@ def adminService
     }
     def submitVoen(){
          adminService.submitVoen(params?.getLong('id'))
+        redirect(action: 'index')
+    }
+    def info(){
+        [info:Info?.get(1)]
+    }
+    def saveInfo(){
+        adminService.saveInfo(params)
         redirect(action: 'index')
     }
 }

@@ -14,7 +14,7 @@
                 <td>${company?.voen}</td>
                 <td>
                     <g:if test="${company?.enabled}">
-                      <p style="color: green;">Active</p>
+                      <p style="color: #0af50a;">Active</p>
                     </g:if>
                     <g:else>
                         <p style="color:red">Disabled</p>
@@ -23,7 +23,7 @@
                 </td>
                 <td>
                     <g:if test="${company?.voenSubmitted}">
-                        Vöen submitted
+                        <p class="submitted">  Vöen submitted</p>
                     </g:if>
                     <g:else>
                         <g:link action="submitVoen" id="${company?.id}">

@@ -1,6 +1,4 @@
 <meta name="layout" content="main"/>
-
-
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
  <br/>
@@ -23,11 +21,11 @@
                 <p>${company?.description?.take(500)}</p>
                 <g:if test="${!ada.Friend?.findByUser1AndUser2AndStatusLessThan(company,currentUser,2) && !ada.Friend?.findByUser1AndUser2AndStatusLessThan(currentUser,company,2)}">
                 <span class="plus"><a href="${createLink(action: 'addFriend',id:company?.id,params: [q:params?.q])}" title="">
-                    <i class="glyphicon"> <b style="font-size:20px;font-family: monospace">+</b> Add as friend</i>
+                    <i class="glyphicon"> <b style="font-size:20px;font-family: monospace">+</b> Add as a friend</i>
                 </a></span>
                 </g:if><g:else>
                 <span class="plus"><a  style="background: red" href="${createLink(action: 'deleteFriend',id:company?.id,params: [q:params?.q])}" title="">
-                    <i class="glyphicon">Delete as friend</i>
+                    <i class="glyphicon">Delete</i>
                 </a></span>
             </g:else>
                 %{--<g:else>--}%

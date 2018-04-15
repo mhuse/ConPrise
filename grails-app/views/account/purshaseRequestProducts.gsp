@@ -1,4 +1,5 @@
 <meta name="layout" content="main"/>
+<h3 class="pageTitle">Purshace request products</h3>
 <table class="table table-bordered">
     <thead>
     <th>Product name</th>
@@ -17,7 +18,7 @@
             <td>${product.numberOfProduct.toString().replace(".0", "")}</td>
             <g:if test="${products?.pursaseForm?.status[0] == 1}">
                 <td><g:link action="addPurshaseRequestProduct" id="${product?.id}"
-                            params="[quotationId: product?.pursaseForm?.id]" style="color: green"><span
+                            params="[quotationId: product?.pursaseForm?.id]" style="color: #0af50a"><span
                             class="glyphicon glyphicon-edit" aria-hidden="true"></span></g:link></td>
                 <td><g:link action="removePurshaseFormProduct" id="${product?.id}" style="color: red;"><span
                         class="glyphicon glyphicon-remove" aria-hidden="true"></span></g:link></td>

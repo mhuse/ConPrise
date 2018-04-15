@@ -21,10 +21,16 @@
         </g:else>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8" style="background: #f5f5f57d;padding: 10px;height: 100%">
         <h1>${user?.name}</h1>
+        <h5>E-mail: ${user?.username}</h5>
+        <br/>
         <g:if test="${user?.id == currentUser?.id}">
             <g:form action="saveCompanyInfo">
+                <div class="form-group">
+                    <label>Phone number:</label>
+                    <input class="form-control" name="phone" value="${user?.phone}"/>
+                </div>
                 <div class="form-group">
                     <label>Description:</label>
                     <textarea class="form-control" name="description">${user?.description}</textarea>
@@ -37,11 +43,14 @@
         </g:if>
         <g:else>
             <p>${user?.description}</p>
+            <g:if test="${user?.phone}">
+            <p>Phone number: ${user?.phone}</p>
+            </g:if>
             <br/><br/><br/>
             <div class="col-md-6">
-                <h2><g:link action="salesOrderList" id="${user.id}" style="text-decoration: none;color:#ffa44b;font-family: ''">Sales order list</g:link> </h2>
-                <h2><g:link action="soldTrackingDocuments" id="${user.id}" style="text-decoration: none;color:#00850b;font-family: ''">Tracking </g:link> </h2>
-                <h2><g:link action="salesInvoiceList" id="${user.id}" style="text-decoration: none;color:#d60213;font-family: ''">Invoices </g:link> </h2>
+                <p><g:link action="salesOrderList" id="${user.id}" style="text-decoration: none;color:#000;font-family: ''">Sales order list</g:link> </p>
+                <p><g:link action="soldTrackingDocuments" id="${user.id}" style="text-decoration: none;color:#000;font-family: ''">Tracking </g:link> </p>
+                <p><g:link action="salesInvoiceList" id="${user.id}" style="text-decoration: none;color:#000;font-family: ''">Invoices </g:link> </p>
             </div>
         </g:else>
     </div>

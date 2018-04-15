@@ -1,4 +1,5 @@
 <meta name="layout" content="main"/>
+<h3 class="pageTitle">Purchase order</h3>
 <g:form action="submitPurshaceOrder" id="${params?.id}">
 <table class="table table-bordered">
     <thead>
@@ -30,7 +31,9 @@
 <g:if test="${salesForm.status == 2}">
         <button class="btn btn-success pull-right" type="submit">Submit
         </button>
-</g:if><g:else>Submitted</g:else>
+</g:if><g:else>
+    <p class="submitted"><p class="submitted">Submitted</p></p>
+</g:else>
 
 </g:form>
 <g:render template="comments"/>

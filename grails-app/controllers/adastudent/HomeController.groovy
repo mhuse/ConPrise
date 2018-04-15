@@ -13,7 +13,6 @@ class HomeController {
     }
 
     def signup() {
-
             redirect(controller: 'login', action: 'auth', params: [message: homeService.signup(params)])
     }
     def activateAccount(){

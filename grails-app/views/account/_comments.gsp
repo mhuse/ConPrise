@@ -19,12 +19,12 @@
     </g:each>
     <g:form action="submitComment" id="${params?.id}">
         <div class="form-group">
-            <label>Your comment:</label>
-            <textarea class="form-control" style="width: 100%;height: 200px" name="comment"></textarea>
+            <textarea placeholder="Your comment:" class="form-control" style="width: 100%;height: 200px;background: #ffffffa3;" name="comment"></textarea>
         </div>
 
         <div class="form-group">
-            <button class="btn btn-success pull-right">Submit</button>
+            <button class="btn btn-primary pull-right">Submit</button>
         </div>
     </g:form>
+    <br/><br/><br/>
 </div>

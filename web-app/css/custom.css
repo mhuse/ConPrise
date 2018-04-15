@@ -6,11 +6,19 @@
 }
 
 .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
-   border:1px solid #51bb1b;
-    background: #f2f98d40;
+   border:1px solid #fff;
     vertical-align: middle;
 }
 
+.table-bordered>tbody{
+    background: #3e454c;
+    color: #fff;
+}
+
+.table-bordered>thead{
+    background: #2c3136;
+    color: #fff;
+}
 .leftcomment{
     float: left;
 }
@@ -23,12 +31,26 @@
 .rightcomment h3{
     color: #0000C0;
 }
+
 .comment{
     float: left;
-    background: #fff;
+    background: #ffffffa3;
     margin: 10px;
     padding: 10px;
+    border-radius: 30px;
 }
 .commentdate{
     padding-right:20px
+}
+.submitted{
+    width: 100px;
+    background: #0000006b;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    border-radius: 6px;
+}
+.pageTitle{
+    color:#3e454c;
+    font-family: '';
 }

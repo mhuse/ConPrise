@@ -1,4 +1,5 @@
 <meta name="layout" content="main"/>
+<h3 class="pageTitle">Sales order</h3>
     <table class="table table-bordered">
         <thead>
         <th>Product name</th>
@@ -33,7 +34,7 @@
         </div>
 
     </g:if>
-    <g:else>Submitted</g:else>
+    <g:else><p class="submitted">Submitted</p></g:else>
 
 </g:form>
 <g:render template="comments"/>

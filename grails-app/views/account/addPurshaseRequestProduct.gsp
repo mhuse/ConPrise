@@ -1,6 +1,6 @@
 <%@ page import="ada.Product" %>
+<h3 class="pageTitle">Add product to purchase request</h3>
 <meta name="layout" content="main"/>
-
 <div class="col-md-6 col-md-offset-3">
     <g:if test="${products?.size()>purchaseRequestProducts?.size()}">
     <g:form action="savePurhsaseRequestProduct" id="${params?.id}">

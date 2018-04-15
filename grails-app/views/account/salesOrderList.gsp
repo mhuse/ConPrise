@@ -1,4 +1,5 @@
 <meta name="layout" content="main"/>
+<h3 class="pageTitle">Sales orders</h3>
 <table class="table table-bordered">
     <thead>
     <th>Title</th>

@@ -26,9 +26,16 @@
 .input-block-level{
 	width:80%!important;
 }
+body{
+	background-repeat: no-repeat;
+	background-size: cover!important;
+	background-position: center;
+	background-attachment: fixed!important;
+	background-image: url("${resource(dir: 'images',file: 'bg.jpg')}") !important;
+}
 </style>
 	<header>
-		<h1>Ada university</h1>
+		<h1>ConPrise</h1>
 
 	</header>
 	<section>
@@ -59,7 +66,7 @@
 							<input type="submit" id="submit" value="Login"/>
 						</p>
 						<p class="change_link">
-							Not a member yet ?
+						<b>Not a member yet ?</b>
 							<a href="#toregister" class="to_register">Join us</a>
 						</p>
 					</form>
@@ -119,7 +126,7 @@
         })();
         // -->
         $('.selectpicker').selectpicker({
-            maxOptions:4
+            maxOptions:5
         });
 	</script>
 

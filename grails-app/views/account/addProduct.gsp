@@ -1,5 +1,5 @@
 <meta name="layout" content="main"/>
-
+<h3 class="pageTitle">Add product</h3>
 <div class="col-md-6 col-md-offset-3">
     <g:uploadForm action="saveProduct" id="${params?.id}">
         <div class="form-group">

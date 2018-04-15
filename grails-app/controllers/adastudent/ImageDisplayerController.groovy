@@ -16,7 +16,7 @@ class ImageDisplayerController {
 
         try {
             if (photoName.isEmpty() || photoName==null || photoName.equals("null")) {
-                specificFolder = "/projects/texnologiya/images/default"
+                specificFolder = "/projects/conprise/images/default"
                 photo = new File(specificFolder+".png")
                 response.setHeader("Content-disposition", "inline")
             } else {
@@ -55,7 +55,7 @@ class ImageDisplayerController {
 
         try {
             if (photoName.isEmpty() || photoName==null || photoName.equals("null")) {
-                specificFolder = "/projects/texnologiya/images/default"
+                specificFolder = "/projects/conprise/images/default"
                 photo = new File(specificFolder+".png")
                 response.setHeader("Content-disposition", "inline")
             } else {

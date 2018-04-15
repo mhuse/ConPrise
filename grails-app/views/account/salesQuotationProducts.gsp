@@ -1,4 +1,5 @@
 <meta name="layout" content="main"/>
+<h3 class="pageTitle">Sales quotation products</h3>
 <table class="table table-bordered">
     <thead>
     <th>Product name</th>

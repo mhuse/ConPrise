@@ -4,6 +4,7 @@ import ada.Category
 import ada.Comment
 import ada.CompanyInterest
 import ada.Friend
+import ada.Info
 import ada.Interest
 import ada.Notification
 import ada.NotificationType
@@ -21,18 +22,18 @@ class AccountController {
     def springSecurityService
 
     def index() {
-        def firstLogin=springSecurityService.currentUser.firstLogin
-        def currentUser=springSecurityService.currentUser
-        def companies
-        if(!firstLogin){
-            companies=User?.findAllByEnabled(true)
-            accountService.secondLogin(currentUser)
+        def firstLogin = springSecurityService.currentUser.firstLogin
+        def info = Info?.get(1)
+        if (firstLogin) {
+            redirect(action: 'recomendation')
+            accountService.secondLogin(springSecurityService.currentUser)
         }
-        [companies:companies,currentUser: currentUser]
+        [info: info]
     }
 
     def watchPurshaseQuotation() {
         def quot = PurshaseForm?.findByIdAndStatus(params?.getLong('id'), 2)
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
         if (quot) {
             def products = PurshaseFormProduct?.findAllByPursaseFormAndStatus(quot, 1)
             [quot: quot, products: products]
@@ -43,10 +44,11 @@ class AccountController {
 
     def watchPurshaceOrder() {
         def quot = SalesForm?.findByIdAndStatusGreaterThan(params?.getLong('id'), 1)
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
         if (quot?.purshaseForm?.user?.id == springSecurityService.currentUser.id) {
             def products = SalesFormProduct?.findAllBySalesFormAndStatus(quot, 1)
-            def comments=Comment?.findAllBySalesForm(quot)
-            [salesForm: quot, products: products,comments:comments,currentUser: springSecurityService.currentUser]
+            def comments = Comment?.findAllBySalesForm(quot)
+            [salesForm: quot, products: products, comments: comments, currentUser: springSecurityService.currentUser]
         } else {
             redirect(action: 'index')
         }
@@ -60,8 +62,8 @@ class AccountController {
     def salesQuotationProducts() {
         def salesForm = SalesForm?.findByUserAndIdAndStatusGreaterThan(springSecurityService.currentUser, params?.getLong('id'), 0)
         def products = SalesFormProduct?.findAllBySalesFormAndStatusGreaterThan(salesForm, 0)
-        def comments=Comment?.findAllBySalesForm(salesForm)
-        [products: products, salesForm: salesForm,comments: comments,currentUser: springSecurityService.currentUser]
+        def comments = Comment?.findAllBySalesForm(salesForm)
+        [products: products, salesForm: salesForm, comments: comments, currentUser: springSecurityService.currentUser]
     }
 
     def deleteSalesQuotProduct() {
@@ -69,11 +71,14 @@ class AccountController {
         redirect(action: 'salesQuatationList')
     }
 
+
     def search() {
-        def companies = User?.findAllByVoenLikeOrNameLikeOrUsernameLikeOrDescriptionLike('%' + params?.q + '%', '%' + params?.q + '%', '%' + params?.q + '%', '%' + params?.q + '%', [enabled: true])
+        def companies = User?.findAllByVoenLikeOrNameLikeOrUsernameLikeOrDescriptionLike('%'
+                + params?.q + '%', '%' + params?.q + '%', '%' + params?.q + '%', '%' + params?.q + '%', [enabled: true])
         companies.remove(springSecurityService.currentUser)
         [foundcompanies: companies, currentUser: springSecurityService.currentUser]
     }
+
 
     def companies() {
         def companies = User?.findAllByEnabledAndVoenSubmitted(true, true)
@@ -155,6 +160,7 @@ class AccountController {
 
     def savePurhsaseQuatation() {
         accountService.savePurhsaseQuatation(params, springSecurityService.currentUser)
+        params?.message='Purshace request created !'
         redirect(action: 'purshaceRequestList')
     }
 
@@ -195,8 +201,7 @@ class AccountController {
         def companyname = accountService.addFriend(params, springSecurityService.currentUser)
         if (params?.q) {
             redirect(action: 'search', params: [q: params?.q, message: 'You sent friend request to ' + companyname])
-        }
-        else {
+        } else {
             redirect(action: 'companies', params: [message: 'You sent friend request to ' + companyname])
         }
     }
@@ -206,9 +211,9 @@ class AccountController {
         def companyname = accountService.deleteFriend(params, springSecurityService.currentUser)
         if (params?.q) {
 
-            redirect(action: 'search', params: [q: params?.q, message: 'You removed ' + companyname +' from friend list !'])
+            redirect(action: 'search', params: [q: params?.q, message: 'You removed ' + companyname + ' from friend list !'])
         } else {
-            redirect(action: 'companies', params: [message: 'You removed ' + companyname +' from friend list !'])
+            redirect(action: 'companies', params: [message: 'You removed ' + companyname + ' from friend list !'])
         }
 
     }
@@ -239,10 +244,12 @@ class AccountController {
     def leftNav() {
         def productCount = Product?.countByUserAndStatus(springSecurityService.currentUser, 1)
         def friendRequest = Friend.countByUser2AndStatus(springSecurityService.currentUser, 0)
-        def friendscount = Friend.countByUser1OrUser2(springSecurityService.currentUser,springSecurityService.currentUser,[status: 1])
+        def friendscount = Friend.countByUser1OrUser2(springSecurityService.currentUser, springSecurityService.currentUser, [status: 1])
         def notificationCount = Notification?.countByUserAndStatus(springSecurityService.currentUser, 1)
+        def notifications = Notification?.findAllByUserAndStatus(springSecurityService.currentUser, 1, [sort: 'id', order: 'desc', max: 10])
         [productCount: productCount, notificationCount: notificationCount, friendRequest: friendRequest,
-         friendscount:friendscount,companycount: User?.countByEnabledAndVoenSubmitted(true, true)]
+         friendscount: friendscount, companycount: User?.countByEnabledAndVoenSubmitted(true, true),
+         notifications: notifications, user: springSecurityService.currentUser]
     }
 
     def headerNav() {
@@ -307,8 +314,9 @@ class AccountController {
     def watchSalesOrder() {
         def salesForm = SalesForm?.findByIdAndUserAndStatusGreaterThan(params?.getLong('id'), springSecurityService.currentUser, 2)
         def products = SalesFormProduct?.findAllBySalesFormAndStatus(salesForm, 2)
-        def comments=Comment?.findAllBySalesForm(salesForm)
-        [salesForm: salesForm, products: products,comments: comments,currentUser: springSecurityService.currentUser]
+        def comments = Comment?.findAllBySalesForm(salesForm)
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
+        [salesForm: salesForm, products: products, comments: comments, currentUser: springSecurityService.currentUser]
     }
 
     def profile() {
@@ -322,6 +330,7 @@ class AccountController {
         if (!user) {
             redirect(action: 'index')
         }
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
         [user: user, currentUser: springSecurityService.currentUser, interests: interests]
     }
 
@@ -332,6 +341,7 @@ class AccountController {
 
     def soldTrackingDocuments() {
         def docs
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
         if (params?.getLong('id')) {
             docs = SalesForm?.executeQuery("select s from SalesForm s where s.user.id=:id and s.status>3 and s.purshaseForm.user.id=:fuserid", [id: springSecurityService.currentUser.id, 'fuserid': params?.getLong('id')])
         } else {
@@ -342,14 +352,15 @@ class AccountController {
 
     def boughtTrackingDocuments() {
         def docs = SalesForm?.executeQuery("select s from SalesForm s where s.purshaseForm.user.id=:id and s.status>3", [id: springSecurityService.currentUser.id])
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
         [docs: docs]
     }
 
     def trackingProducts() {
-        def salesForm=SalesForm?.findById(params?.getLong('id'))
+        def salesForm = SalesForm?.findById(params?.getLong('id'))
         def products = SalesFormProduct?.findAllByStatusGreaterThanAndSalesForm(1, salesForm)?.purhshaseFormProduct?.product
-        def comments=Comment?.findAllBySalesForm(salesForm)
-        [products: products,comments:comments,currentUser: springSecurityService.currentUser]
+        def comments = Comment?.findAllBySalesForm(salesForm)
+        [products: products, comments: comments, currentUser: springSecurityService.currentUser]
     }
 
     def submitdelivery() {
@@ -364,6 +375,7 @@ class AccountController {
 
     def salesInvoiceList() {
         def docs
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
         if (params?.getLong('id')) {
             docs = SalesForm?.executeQuery("select s from SalesForm s where s.user.id=:id and s.status>5 and s.purshaseForm.user.id=:pfuserid", [id: springSecurityService.currentUser.id, 'pfuserid': params?.getLong('id')])
         } else {
@@ -374,6 +386,7 @@ class AccountController {
 
     def purshaceInvoiceList() {
         def docs = SalesForm?.executeQuery("select s from SalesForm s where s.purshaseForm.user.id=:id and s.status>5", [id: springSecurityService.currentUser.id])
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
         [docs: docs]
     }
 
@@ -384,8 +397,14 @@ class AccountController {
         for (product in products) {
             discount += (product?.price / 100) * product?.discount
         }
-        def comments=Comment?.findAllBySalesForm(salesForm)
-        [products: products, user: springSecurityService.currentUser, salesForm: salesForm, discount: discount,comments:comments,currentUser: springSecurityService.currentUser]
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
+        accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
+        def comments = Comment?.findAllBySalesForm(salesForm)
+        double pricesum
+        for(p in products){
+            pricesum+=p.price*p.numberOfProduct
+        }
+        [pricesum:pricesum,products: products, user: springSecurityService.currentUser, salesForm: salesForm, discount: discount, comments: comments, currentUser: springSecurityService.currentUser]
     }
 
     def submitInvoice6() {
@@ -408,9 +427,9 @@ class AccountController {
         redirect(action: 'profile')
     }
 
-    def friendList(){
-        def friends=Friend?.findAllByUser1OrUser2(springSecurityService.getCurrentUser(),springSecurityService.getCurrentUser(),[status:1])
-        [friends:friends,currentUser: springSecurityService.currentUser]
+    def friendList() {
+        def friends = Friend.executeQuery("select f from Friend f where (f.user1=:u1 or f.user2=:u2) and f.status=1",['u1':springSecurityService.currentUser,'u2':springSecurityService.currentUser]);
+        [friends: friends, currentUser: springSecurityService.currentUser]
     }
 //    def comments(){
 //        def salesForm=SalesForm?.get(params?.getLong('id'))
@@ -418,8 +437,15 @@ class AccountController {
 //        def user=springSecurityService.currentUser
 //        [comments:comments,currentUser: user]
 //    }
-    def submitComment(){
-        accountService.submitComment(params,springSecurityService.currentUser)
+    def submitComment() {
+        accountService.submitComment(params, springSecurityService.currentUser)
         redirect(uri: request.getHeader("referer"))
+    }
+
+    def recomendation() {
+        def currentUser = springSecurityService.currentUser
+        def companies = User?.findAllByEnabled(true)
+        accountService.secondLogin(currentUser)
+        [companies: companies, currentUser: currentUser]
     }
 }
