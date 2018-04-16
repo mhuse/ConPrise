@@ -1,5 +1,6 @@
 <meta name="layout" content="main"/>
 <h3 class="pageTitle">Friend requests</h3>
+<p class="opermessage">${params?.message}</p>
 <g:each in="${friendRequests}" var="request">
 <div class="form-group">
     <label>${request.user1.name} :</label>

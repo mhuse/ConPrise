@@ -1,5 +1,5 @@
 <meta name="layout" content="main"/>
-
+<p class="opermessage">${params?.message}</p>
 <div class="col-md-12">
     <div class="col-md-4">
         <g:if test="${user?.image}">

@@ -1,5 +1,6 @@
 <meta name="layout" content="main"/>
 <h3 class="pageTitle">Purchase requests</h3>
+<p class="opermessage">${params?.message}</p>
 <table class="table table-bordered">
     <thead>
     <th>Title</th>

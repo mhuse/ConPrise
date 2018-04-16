@@ -1,5 +1,6 @@
 <meta name="layout" content="main"/>
 <h3 class="pageTitle">Purshace request products</h3>
+<p class="opermessage">${params?.message}</p>
 <table class="table table-bordered">
     <thead>
     <th>Product name</th>

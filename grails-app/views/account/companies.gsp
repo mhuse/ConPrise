@@ -2,7 +2,7 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 <h1 style="color:#3e454c;font-family: ''">List of companies</h1>
-
+<p class="opermessage">${params?.message}</p>
 <div class="col-md-8" style="background: #f5f5f57d;padding: 10px">
 
     <g:each in="${foundcompanies}" var="company">

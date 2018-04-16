@@ -3,6 +3,7 @@
 <h3 class="pageTitle">Products
     <a href="${createLink(action: 'addProduct')}"><button class="btn btn-primary pull-right" style="color:#fff">+ Add product</button> </a>
 </h3>
+<p class="opermessage">${params?.message}</p>
 <table class="table table-bordered">
     <thead>
     <th>Product name</th>

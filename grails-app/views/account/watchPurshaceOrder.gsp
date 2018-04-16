@@ -7,6 +7,8 @@
     <th>Description</th>
     <th>Count</th>
     <th>Price (USD)</th>
+    <th>Total (USD)</th>
+    <th>Total with discount (USD)</th>
     <th>Discount (%)</th>
     <g:if test="${salesForm?.status==2}">
     <th>Select</th>
@@ -20,6 +22,8 @@
                 <td>${product?.purhshaseFormProduct?.description}</td>
                 <td>${product?.numberOfProduct?.toString()?.replace(".0", "")} </td>
                 <td>${product?.price?.toString()?.replace(".0", "")}</td>
+                <td>${(product?.numberOfProduct*product?.price)?.toString()?.replace(".0", "")}</td>
+                <td>${(product?.numberOfProduct*product?.price - product?.numberOfProduct*product?.price*product?.discount/100)?.toString()?.replace(".0", "")}</td>
                 <td>${product?.discount?.toString()?.replace(".0", "")}</td>
                 <g:if test="${salesForm?.status==2}">
                 <td><input type="checkbox" style="width: 30px;height: 30px" name="productId" value="${product?.id}"/></td>

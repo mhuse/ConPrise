@@ -34,6 +34,11 @@
         background-attachment: fixed!important;
         background-image: url("${resource(dir: 'images',file: 'bg2.jpg')}") !important;
     }
+    .opermessage{
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
         /*body{*/
             /*background: #f2f2f2!important;*/
         /*}*/

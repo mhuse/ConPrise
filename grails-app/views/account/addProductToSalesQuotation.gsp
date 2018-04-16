@@ -1,5 +1,6 @@
 <meta name="layout" content="main"/>
 <h3 class="pageTitle">Add product to sales quotation:</h3>
+<p class="opermessage">${params?.message}</p>
 <div style="margin: auto">
     <h3>${sq?.name}</h3>
 </div>

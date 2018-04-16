@@ -6,6 +6,8 @@
         <th>Description</th>
         <th>Count</th>
         <th>Price (USD)</th>
+        <th>Total (USD)</th>
+        <th>Total with discount (USD)</th>
         <th>Discount (%)</th>
         </thead>
         <tbody>
@@ -16,6 +18,8 @@
                 <td>${product?.purhshaseFormProduct?.description}</td>
                 <td>${product?.numberOfProduct?.toString()?.replace(".0", "")} </td>
                 <td>${product?.price?.toString()?.replace(".0", "")}</td>
+                <td>${(product?.numberOfProduct*product?.price)?.toString()?.replace(".0", "")}</td>
+                <td>${(product?.numberOfProduct*product?.price - product?.numberOfProduct*product?.price*product?.discount/100)?.toString()?.replace(".0", "")}</td>
                 <td>${product?.discount?.toString()?.replace(".0", "")}</td>
             </tr>
         </g:each>

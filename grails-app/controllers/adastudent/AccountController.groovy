@@ -119,7 +119,7 @@ class AccountController {
 
     def savePurhsaseRequestProduct() {
         accountService.savePurhsaseRequestProduct(params, springSecurityService.currentUser)
-        redirect(action: 'purshaceRequestList')
+        redirect(action: 'purshaceRequestList',params: [message:'Product added !'])
     }
 
     def removePurshaseFormProduct() {
@@ -127,7 +127,7 @@ class AccountController {
         if (product.pursaseForm.user.id == springSecurityService.currentUser.id) {
             accountService.removePurshaseFormProduct(product)
         }
-        redirect(action: 'purshaseRequestProducts', id: product.pursaseForm.id)
+        redirect(action: 'purshaseRequestProducts',params: [message:'Company info saved !', 'id': product.pursaseForm.id])
     }
 
     def addPurshaseRequest() {
@@ -160,15 +160,15 @@ class AccountController {
 
     def savePurhsaseQuatation() {
         accountService.savePurhsaseQuatation(params, springSecurityService.currentUser)
-        redirect(action: 'purshaceRequestList')
+        redirect(action: 'purshaceRequestList',params: [message:'You have created new purshase request !'])
     }
 
     def saveSalesQuatation() {
         def id = accountService.saveSalesQuatation(params, springSecurityService.currentUser)
         if (params?.id) {
-            redirect(action: 'salesQuatationList')
+            redirect(action: 'salesQuatationList',params: [message:'You have created new sales quotation !'])
         } else {
-            redirect(action: 'addProductToSalesQuotation', id: id)
+            redirect(action: 'addProductToSalesQuotation',params: [message:'You have created new sales quotation !', 'id': id])
         }
     }
 
@@ -185,7 +185,7 @@ class AccountController {
 
     def saveProductToSalesQuotation() {
         accountService.saveProductToSalesQuotation(params, springSecurityService.currentUser)
-        redirect(action: 'salesQuatationList')
+        redirect(action: 'salesQuatationList',params: [message:'Product added!'])
     }
 
     def addSalesQuotation() {
@@ -209,10 +209,9 @@ class AccountController {
     def deleteFriend() {
         def companyname = accountService.deleteFriend(params, springSecurityService.currentUser)
         if (params?.q) {
-
-            redirect(action: 'search', params: [q: params?.q, message: 'You removed ' + companyname + ' from friend list !'])
+            redirect(action: 'search', params: [q: params?.q, message: 'Deleted !'])
         } else {
-            redirect(action: 'companies', params: [message: 'You removed ' + companyname + ' from friend list !'])
+            redirect(action: 'companies', params: [message: 'Deleted !'])
         }
 
     }
@@ -227,7 +226,7 @@ class AccountController {
 
     def removeProduct() {
         accountService.removeProduct(params, springSecurityService.currentUser)
-        redirect(action: 'productList')
+        redirect(action: 'productList',params: [message:'Product deleted !'])
     }
 
     def productList() {
@@ -237,7 +236,7 @@ class AccountController {
 
     def saveProduct() {
         accountService.saveProduct(params, request, springSecurityService.currentUser)
-        redirect(action: 'productList')
+        redirect(action: 'productList',params: [message:'Product saved !'])
     }
 
     def leftNav() {
@@ -267,17 +266,17 @@ class AccountController {
 
     def acceptFriendRequest() {
         accountService.acceptFriendRequest(params, springSecurityService.currentUser)
-        redirect(action: 'friendRequests')
+        redirect(action: 'friendRequests',params: [message:'Friend request accepted'])
     }
 
     def deletePurshaseQuotation() {
         accountService.deletePurshaseQuotation(params, springSecurityService.currentUser)
-        redirect(action: 'purshaceQuatationList')
+        redirect(action: 'purshaceQuatationList',params: [message:'Purshace request deleted!'])
     }
 
     def deleteSalesQuotation() {
         accountService.deleteSalesQuotation(params, springSecurityService.currentUser)
-        redirect(action: 'purshaceQuatationList')
+        redirect(action: 'purshaceQuatationList',params: [message:'Sales quotation deleted!'])
     }
 
     def trigger() {
@@ -364,7 +363,7 @@ class AccountController {
 
     def submitdelivery() {
         accountService.submitdelivery(params)
-        redirect(action: 'boughtTrackingDocuments')
+        redirect(action: 'boughtTrackingDocuments',params: [message:'Submitted!'])
     }
 
     def createInvoice() {
@@ -393,37 +392,38 @@ class AccountController {
         def salesForm = SalesForm?.findByIdAndStatusGreaterThan(params?.getLong('id'), 5)
         def products = SalesFormProduct?.findAllBySalesFormAndStatusGreaterThan(salesForm, 1)
         def discount = 0
-        for (product in products) {
-            discount += (product?.price / 100) * product?.discount
+        for (p in products) {
+            discount += p?.price/100*p?.discount*p?.numberOfProduct
         }
         accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
         accountService.openNotification(springSecurityService.currentUser, params?.getLong('notification'))
         def comments = Comment?.findAllBySalesForm(salesForm)
         double pricesum
         for(p in products){
-            pricesum+=p.price+p.numberOfProduct
+            pricesum+=p.price*p.numberOfProduct
         }
-        [pricesum:pricesum,products: products, user: springSecurityService.currentUser, salesForm: salesForm, discount: discount, comments: comments, currentUser: springSecurityService.currentUser]
+        [pricesum:pricesum,products: products, user: springSecurityService.currentUser,
+         salesForm: salesForm, discount: discount, comments: comments, currentUser: springSecurityService.currentUser]
     }
 
     def submitInvoice6() {
         accountService.submitInvoice6(params)
-        redirect(action: 'invoiceProducts', id: params?.id)
+        redirect(action: 'invoiceProducts',params: [message:'Submitted!',id: params?.id])
     }
 
     def submitInvoice7() {
         accountService.submitInvoice7(params)
-        redirect(action: 'invoiceProducts', id: params?.id)
+        redirect(action: 'invoiceProducts',params: [message:'Submitted!',id: params?.id])
     }
 
     def saveProfilePicture() {
         accountService.saveProfilePicture(params, request)
-        redirect(action: 'profile', id: springSecurityService.currentUser.id)
+        redirect(action: 'profile',params: [message:'Prodile picture saved !','id': springSecurityService.currentUser.id])
     }
 
     def saveCompanyInfo() {
         accountService.saveCompanyInfo(params)
-        redirect(action: 'profile')
+        redirect(action: 'profile',params: [message:'Company info saved !'])
     }
 
     def friendList() {
