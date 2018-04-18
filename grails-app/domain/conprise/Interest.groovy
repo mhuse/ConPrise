@@ -1,9 +1,8 @@
-package ada
+package conprise
 
-class Category {
+class Interest {
     String name
-    int status
-    static hasMany = [products:Product]
+    static hasMany = [companyInterests:CompanyInterest]
     static constraints = {
     }
     static mapping = {

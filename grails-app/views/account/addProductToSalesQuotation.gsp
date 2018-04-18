@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     <g:each in="${pProducts}" var="product">
-        <g:if test="${!ada.SalesFormProduct?.findBySalesFormAndStatusAndPurhshaseFormProduct(sq, 1, product)}">
+        <g:if test="${!conprise.SalesFormProduct?.findBySalesFormAndStatusAndPurhshaseFormProduct(sq, 1, product)}">
             <g:form action="saveProductToSalesQuotation">
                 <input type="hidden" name="pqid" value="${product?.id}"/>
                 <tr>

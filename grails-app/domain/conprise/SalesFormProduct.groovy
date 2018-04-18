@@ -1,4 +1,4 @@
-package ada
+package conprise
 
 class SalesFormProduct {
     static belongsTo = [purhshaseFormProduct:PurshaseFormProduct, salesForm:SalesForm]

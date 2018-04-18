@@ -1,4 +1,3 @@
-import ada.Interest
 import grails.converters.JSON
 
 import javax.servlet.http.HttpServletResponse

@@ -1,4 +1,4 @@
-package ada
+package conprise
 
 class NotificationType {
     String text

@@ -25,7 +25,7 @@
     </g:each>
     </tbody>
 </table>
-<div class="col-md-6">
+<div class="col-md-6" style="background: #f5f5f57d;padding: 10px">
     <table>
         <tr>
             <td>Sum: </td>

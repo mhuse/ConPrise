@@ -1,10 +1,4 @@
-package adastudent
-
-import ada.CompanyInterest
-import ada.Interest
-import ada.Role
-import ada.User
-import ada.UserRole
+package conprise
 
 class HomeService {
 def mailService

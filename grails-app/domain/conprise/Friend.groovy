@@ -1,4 +1,4 @@
-package ada
+package conprise
 
 class Friend {
     User user1 //user1- dostluq gonderen , user2-dostluqu qebul eden ( Bele de ki ferqi yoxdu ;) )

@@ -14,21 +14,21 @@ environments {
     development {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/ada?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+            url = "jdbc:mysql://localhost:3306/conprise?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
         }
     }
     test {//YOXLA
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/ada?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+            url = "jdbc:mysql://localhost:3306/conprise?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
         }
     }
     production {
         dataSource {
             username = "root"
-            password = "security19951995mysql@dmin"
+            password = "**************"
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/ada?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+            url = "jdbc:mysql://localhost:3306/conprise?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
             pooled = true
             pooled = true
             properties {

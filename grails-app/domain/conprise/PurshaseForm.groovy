@@ -1,4 +1,4 @@
-package ada
+package conprise
 
 class PurshaseForm {
     static belongsTo = [user:User]

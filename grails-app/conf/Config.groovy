@@ -103,9 +103,9 @@ grails {
     }
 }
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'ada.User'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'ada.UserRole'
-grails.plugins.springsecurity.authority.className = 'ada.Role'
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'conprise.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'conprise.UserRole'
+grails.plugins.springsecurity.authority.className = 'conprise.Role'
 grails.project.fork = [
         test: false ,
         run: false ,

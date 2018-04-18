@@ -1,10 +1,10 @@
-package adastudent
+package conprise
 
 class ImageDisplayerController {
 
     def productimage () {
 
-        def photoPath    = "/home/projects/ada/product/images"
+        def photoPath    = "/home/projects/conprise/product/images"
         def photoName    = params?.photoName
         def dir          = params?.dir
         if(!dir){
@@ -43,7 +43,7 @@ class ImageDisplayerController {
     }
     def companyImage () {
 
-        def photoPath    = "/home/projects/ada/company/images"
+        def photoPath    = "/home/projects/conprise/company/images"
         def photoName    = params?.photoName
         def dir          = params?.dir
         if(!dir){

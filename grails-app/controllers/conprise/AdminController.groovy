@@ -1,7 +1,5 @@
-package adastudent
+package conprise
 
-import ada.Info
-import ada.User
 import grails.plugins.springsecurity.Secured
 
 @Secured(["ROLE_ADMIN"])

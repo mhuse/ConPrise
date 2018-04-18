@@ -1,4 +1,4 @@
-package ada
+package conprise
 
 class Info {
     String title

@@ -1,4 +1,4 @@
-<%@ page import="ada.Interest" %>
+<%@ page import="conprise.Interest" %>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css"/>
 <link rel="stylesheet"
 	  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"/>
@@ -86,7 +86,7 @@ body{
 						<p>
 					      <label class="uname" >Interests:</label>
 								<select  multiple="multiple" data-live-search="true" class="selectpicker" name="interest" style="width: 100%">
-									<g:each in="${ada.Interest?.findAll()}" var="interest">
+									<g:each in="${conprise.Interest?.findAll()}" var="interest">
 										<option value="${interest?.id}">${interest?.name}</option>
 									</g:each>
 							</select>

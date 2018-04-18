@@ -1,7 +1,4 @@
-package adastudent
-
-import ada.Info
-import ada.User
+package conprise
 
 class AdminService {
 

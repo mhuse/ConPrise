@@ -22,7 +22,7 @@
     </g:each>
     </tbody>
 </table>
-<g:if test="${!ada.SalesForm?.findByPurshaseForm(quot)}">
+<g:if test="${!conprise.SalesForm?.findByPurshaseForm(quot)}">
 <div class="col-md-6 col-md-offset-3">
     <p style="color:green">Create sales quotation for this purshase quotation.</p>
     <g:form action="saveSalesQuatation">

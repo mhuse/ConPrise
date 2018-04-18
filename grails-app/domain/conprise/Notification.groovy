@@ -1,4 +1,4 @@
-package ada
+package conprise
 
 class Notification {
     int status //0-oxunmush //1-oxunmamish

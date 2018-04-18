@@ -24,8 +24,8 @@
                 <h3><a href="${createLink(action: 'profile', id: company?.id)}" title="">${company?.name}</a></h3>
 
                 <p>${company?.description?.take(500)}</p>
-                <g:set var="friend1" value="${ada.Friend?.findByUser1AndUser2(company, currentUser)}"></g:set>
-                <g:set var="friend2" value="${ada.Friend?.findByUser1AndUser2(currentUser, company)}"></g:set>
+                <g:set var="friend1" value="${conprise.Friend?.findByUser1AndUser2(company, currentUser)}"></g:set>
+                <g:set var="friend2" value="${conprise.Friend?.findByUser1AndUser2(currentUser, company)}"></g:set>
                 <g:if test="${(!friend1 && !friend2) || friend1?.status == 2 || friend2?.status == 2}">
                     <span class="plus">
                         <a href="${createLink(action: 'addFriend', id: company?.id)}" title="" style="color:#fff">

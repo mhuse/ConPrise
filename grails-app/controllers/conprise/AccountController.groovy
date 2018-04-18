@@ -1,19 +1,5 @@
-package adastudent
+package conprise
 
-import ada.Category
-import ada.Comment
-import ada.CompanyInterest
-import ada.Friend
-import ada.Info
-import ada.Interest
-import ada.Notification
-import ada.NotificationType
-import ada.Product
-import ada.PurshaseForm
-import ada.PurshaseFormProduct
-import ada.SalesForm
-import ada.SalesFormProduct
-import ada.User
 import grails.plugins.springsecurity.Secured
 
 @Secured(["ROLE_COMPANY"])

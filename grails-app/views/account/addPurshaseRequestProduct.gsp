@@ -1,4 +1,4 @@
-<%@ page import="ada.Product" %>
+<%@ page import="conprise.Product" %>
 <h3 class="pageTitle">Add product to purchase request</h3>
 <meta name="layout" content="main"/>
 <div class="col-md-6 col-md-offset-3">

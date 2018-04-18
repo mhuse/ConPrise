@@ -1,4 +1,4 @@
-package ada
+package conprise
 
 class Comment {
     static belongsTo = [user:User,salesForm:SalesForm]

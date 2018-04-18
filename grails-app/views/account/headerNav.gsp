@@ -1,5 +1,8 @@
 <header class="cd-main-header">
-    <a href="${createLink(controller: 'account')}" class="cd-logo"><img src="${resource(dir: 'account/img',file: 'cd-logo.svg')}" alt="Logo"></a>
+    <a href="${createLink(controller: 'account')}" class="cd-logo">
+        %{--<img src="${resource(dir: 'account/img',file: 'cd-logo.svg')}" alt="Logo">--}%
+        <img src="${resource(dir: 'images',file: 'logo.jpg')}" alt="Logo" style="width: 129px">
+    </a>
     %{--<a href="#0" class="cd-logo"><img src="${resource(dir: 'images',file: 'logo.PNG')}" alt="Logo"></a>--}%
 
     <div class="cd-search is-hidden">

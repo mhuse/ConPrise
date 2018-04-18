@@ -4,8 +4,13 @@
         <li>
             <div class="form-group">
                 <a href="${createLink(action: 'profile')}" style="color: #efc31d">
+                    <g:if test="${user?.image}">
                     <img src="${createLink(controller: "imageDisplayer", action: "companyImage", params: [photoName: user?.image, dir: ''])}"
                          style="width: 150px;border-radius: 50%"/>
+                    </g:if><g:else>
+                    <img src="${resource(dir: 'images',file: 'company.png')}"
+                         style="width: 150px;border-radius: 50%"/>
+                </g:else>
                 </a>
                 <a href="${createLink(action: 'profile')}" style="    color: #fbfbfb;
                 background: #3e454c;
@@ -65,53 +70,53 @@
 
                         <g:if test="${noty?.type?.type.equals("purshasequotation")}">
                             <g:link action="watchPurshaseQuotation" id="${noty?.formId}" params="['notification':noty?.id]">
-                                ${ada.PurshaseForm?.get(noty?.formId)?.user?.name} ${noty?.type?.text}
+                                ${conprise.PurshaseForm?.get(noty?.formId)?.user?.name} ${noty?.type?.text}
                             </g:link>
                         </g:if>
                         <g:if test="${noty?.type?.type.equals("purshaceorder")}">
                             <g:link action="watchPurshaceOrder" id="${noty?.formId}"  params="['notification':noty?.id]">
-                                ${noty?.type?.text} from ${ada.SalesForm?.get(noty?.formId)?.user?.name}
+                                ${noty?.type?.text} from ${conprise.SalesForm?.get(noty?.formId)?.user?.name}
                             </g:link>
                         </g:if>
                         <g:if test="${noty?.type?.type.equals("salesorder")}">
                             <g:link action="watchSalesOrder" id="${noty?.formId}"  params="['notification':noty?.id]">
-                                ${noty?.type?.text} from ${ada.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name}
+                                ${noty?.type?.text} from ${conprise.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name}
                             </g:link>
                         </g:if>
 
                         <g:if test="${noty?.type?.type.equals("tracking")}">
                             <g:link action="boughtTrackingDocuments" id="${noty?.formId}"  params="['notification':noty?.id]">
-                                ${noty?.type?.text} from ${ada.SalesForm?.get(noty?.formId)?.user?.name}
+                                ${noty?.type?.text} from ${conprise.SalesForm?.get(noty?.formId)?.user?.name}
                             </g:link>
                         </g:if>
                         <g:if test="${noty?.type?.type.equals("delivery")}">
                             <g:link action="soldTrackingDocuments" params="['notification':noty?.id]">
-                                ${ada.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name} ${noty?.type?.text}
+                                ${conprise.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name} ${noty?.type?.text}
                             </g:link>
                         </g:if>
                         <g:if test="${noty?.type?.type.equals("invoice")}">
                             <g:link action="purshaceInvoiceList" id="${noty?.formId}"  params="['notification':noty?.id]">
-                                ${noty?.type?.text} from  ${ada.SalesForm?.get(noty?.formId)?.user?.name}.
+                                ${noty?.type?.text} from  ${conprise.SalesForm?.get(noty?.formId)?.user?.name}.
                             </g:link>
                         </g:if>
                         <g:if test="${noty?.type?.type.equals("invoicesubmitted")}">
                             <g:link action="salesInvoiceList" id="${noty?.formId}"  params="['notification':noty?.id]">
-                                ${noty?.type?.text} by ${ada.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name}
+                                ${noty?.type?.text} by ${conprise.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name}
                             </g:link>
                         </g:if>
                         <g:if test="${noty?.type?.type.equals("invoicesubmitted")}">
                             <g:link action="invoiceProducts" id="${noty?.formId}"  params="['notification':noty?.id]">
-                                ${noty?.type?.text} by ${ada.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name}
+                                ${noty?.type?.text} by ${conprise.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name}
                             </g:link>
                         </g:if>
                         <g:if test="${noty?.type?.type.equals("invoicesubmitted2")}">
                             <g:link action="invoiceProducts" id="${noty?.formId}" params="['notification':noty?.id]">
-                                ${noty?.type?.text} by ${ada.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name}
+                                ${noty?.type?.text} by ${conprise.SalesForm?.get(noty?.formId)?.purshaseForm?.user?.name}
                             </g:link>
                         </g:if>
                         <g:if test="${noty?.type?.type.equals("friendrequestaccept")}">
                             <g:link action="profile" id="${noty?.formId}" params="['notification':noty?.id]">
-                                ${ada.User.get(noty?.formId).name} ${noty?.type?.text}
+                                ${conprise.User.get(noty?.formId).name} ${noty?.type?.text}
                             </g:link>
                         </g:if>
 

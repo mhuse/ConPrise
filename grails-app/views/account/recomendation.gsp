@@ -4,8 +4,8 @@
     <div class="col-md-8" style="background: #f5f5f57d;padding:10px">
     <g:each in="${companies}" var="company">
         <g:if test="${company.id!=currentUser.id}"><br/>
-            <g:if test="${company.companyInterest.interest.id[0] in ada.Interest.findAll().id}">
-                <g:if test="${!ada.Friend?.findByUser1AndUser2AndStatusLessThan(company,currentUser,2) && !ada.Friend?.findByUser1AndUser2AndStatusLessThan(currentUser,company,2)}">
+            <g:if test="${company.companyInterest.interest.id[0] in conprise.Interest.findAll().id}">
+                <g:if test="${!conprise.Friend?.findByUser1AndUser2AndStatusLessThan(company,currentUser,2) && !conprise.Friend?.findByUser1AndUser2AndStatusLessThan(currentUser,company,2)}">
                     <article class="search-result row">
                     <div class="col-xs-12 col-sm-12 col-md-3">
                         <a href="#" title="Lorem ipsum" class="thumbnail"><img src="${resource(dir: 'account/img',file: 'company.png')}" alt="${company.name}" /></a>

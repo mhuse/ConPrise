@@ -1,4 +1,4 @@
-package ada
+package conprise
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 

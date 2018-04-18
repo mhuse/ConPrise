@@ -1,16 +1,4 @@
-package adastudent
-
-import ada.Category
-import ada.Comment
-import ada.Friend
-import ada.Notification
-import ada.NotificationType
-import ada.Product
-import ada.PurshaseForm
-import ada.PurshaseFormProduct
-import ada.SalesForm
-import ada.SalesFormProduct
-import ada.User
+package conprise
 
 class AccountService {
     def springSecurityService
@@ -38,7 +26,7 @@ class AccountService {
                     }
                     if (extension == 'jpeg' || extension == 'gif' || extension == 'png' || extension == 'bmp' || extension == 'jpg' || extension == 'JPG' || extension == 'JPEG' || extension == 'PNG') {
                         String fileName = UUID.randomUUID().toString().toLowerCase() + "." + extension
-                        String dir = "/home/projects/ada/product/images"
+                        String dir = "/home/projects/conprise/product/images"
                         def filePath = new File(dir)
                         filePath.mkdirs()
                         file.transferTo(new File(filePath, fileName))
@@ -328,7 +316,7 @@ class AccountService {
                     }
                     if (extension == 'jpeg' || extension == 'png' || extension == 'bmp' || extension == 'jpg') {
                         String fileName = UUID.randomUUID().toString() + "." + extension
-                        String dir = "/home/projects/ada/company/images"
+                        String dir = "/home/projects/conprise/company/images"
                         def filePath = new File(dir)
                         filePath.mkdirs()
                         file.transferTo(new File(filePath, fileName))

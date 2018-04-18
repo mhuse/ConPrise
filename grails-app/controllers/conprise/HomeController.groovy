@@ -1,9 +1,4 @@
-package adastudent
-
-import ada.Interest
-import ada.Role
-import ada.User
-import ada.UserRole
+package conprise
 
 class HomeController {
     def homeService
